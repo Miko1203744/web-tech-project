@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .navbar{
+      margin-bottom: 0;
+    }
+    .a{
+      background: url("ekub.jpg") center center fixed; ;
+      height: 100vh;
+      
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+    
+    }
+    form{
+      margin-top: 20px;
+      border-style:double  solid ;
+      border-color: black;
+      border-radius: 30px;
+      height: 500px;
+      background-color: aquamarine;
+    }
+.form-group{
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.card{
+  height: 400px;
+  width: 400px;
+  border-color: black;
+  border-radius: 30px;
+  margin-top: 20px;
+  background-color: aquamarine;
+  margin-left: 100px;
+}
+.card-body{
+  margin-left: 120px;
+}
+        </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">ethio_ekub</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <!--
+      <li><a shref="#">Page 1</a>
+      </li>
+      <li><a href="#">Page 2</a></li>
+    </ul>-->
+    </ul>
+   
+</div>
+</nav>
+    <section class="a">
+     
+      <div class="row">
+        <div class="col-sm-6">
+         
+       
+      <form >
+        
+        <div class="form-group">
+          <label for="email">enter your name:</label>
+          <input type="text" class="form-control" id="name" placeholder="Enter email" name="email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">amount paid:</label>
+          <input type="text" class="form-control" id="amount" placeholder="Enter password" name="pwd">
+        </div>
+
+        <button type="submit"  class="btn">Submit</button>  
+        <button id="pickWinner">Pick a winner!</button>
+      </form>
+    
+
+        </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          welcome to ethio ekub
+        </div>
+        <p><strong>amount recived till know:</strong> $<span id="total">0</span></p>
+        <p><strong>Number of active person:</strong> <span id="donationCount">0</span></p>
+        <p><strong>Winner:</strong> <span id="winner"></span></p>
+      </div>
+    </div>
+
+      </div>
+
+      <script>
+        /*
+      const person=[]
+      const amount=[]
+      
+      document.querySelector('.btn').addEventListener("click", function(){ekub(person,amount)})
+      let sum=0;
+      function ekub(x,y){
+        for(let i=0;i<=5;i++){
+      const n=document.querySelector('#name').value
+      const a=document.querySelector('#amount_paid').value  
+      x.push(n)        
+      y.push(a)
+      if(x.length==2){
+      const randomindex= Math.floor(Math.random()* x.length)
+      const item=x[randomindex]
+      for(let i=0;i<y.length;i++){
+      sum+=parseInt(y[i]);
+      }
+      alert("congratulation "+item+"  you win "+sum+" birr for this month")
+    }
+  
+  }
+    alert(x.length)
+        }
+   */
+   const form = document.querySelector('form');
+      const nameInput = document.getElementById('name');
+      const amountInput = document.getElementById('amount');
+      const totalSpan = document.getElementById('total');
+      const donationCountSpan = document.getElementById('donationCount');
+      const winnerSpan = document.getElementById('winner');
+      const pickWinnerBtn = document.getElementById('pickWinner');
+      
+      let donations = [];
+      
+      
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const name = nameInput.value;
+        const amount = parseInt(amountInput.value);
+        donations.push({name, amount});
+        updateDonationTotal();
+        updateDonationCount();
+        nameInput.value = '';
+        amountInput.value = '';
+      });
+      
+      pickWinnerBtn.addEventListener('click', e => {
+        e.preventDefault();
+        if (donations.length > 0) {
+          const randomIndex = Math.floor(Math.random() * donations.length);
+          const winner = donations[randomIndex];
+          winnerSpan.textContent = winner.name;
+        } else {
+          winnerSpan.textContent = 'please fill the space with value'
+        }
+      });
+  
+      function updateDonationTotal() {
+        const total = donations.reduce((acc, current) => acc + current.amount, 0);
+        totalSpan.textContent = total;
+      }
+      
+      function updateDonationCount() {
+        donationCountSpan.textContent = donations.length;
+      }
+      </script>
+       
+    
+  </section>
+
+
+
+
+
+
+</body>
+</html>
